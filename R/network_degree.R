@@ -45,13 +45,18 @@ network_degree <- function(network) {
   degree <- as.integer(names(degree_table))
   n_total <- sum(degree_table)
 
+  abs_freq <- as.vector(degree_table)
+  rel_freq <- abs_freq / n_total
+  cum_freq <- cumsum(rel_freq)
+  surv <- (1 - cum_freq) + rel_freq
+
   # Create degree distribution dataframe
   degree_distr <- data.frame(
     degree = degree,
-    abs_freq = as.vector(degree_table),
-    rel_freq = as.vector(degree_table) / n_total,
-    cum_freq = cumsum(as.vector(degree_table)) / n_total,
-    surv = rev(cumsum(rev(as.vector(degree_table)))) / n_total
+    abs_freq = abs_freq,
+    rel_freq = rel_freq,
+    cum_freq = cum_freq,
+    surv = surv
   )
 
   # Create and return network_degree object
