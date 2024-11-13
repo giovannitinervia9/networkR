@@ -2,34 +2,32 @@
 % Please edit documentation in R/graph_to_network.R
 \name{graph_to_network}
 \alias{graph_to_network}
-\title{Convert Graph List to Network Object}
+\title{Convert List of Edges to Network Object}
 \usage{
 graph_to_network(graph)
 }
 \arguments{
-\item{graph}{A list of integer pairs, where each pair represents an undirected
-edge in the network. Each pair should contain exactly two positive integer
-values, with each value representing a node.}
+\item{graph}{A list of integer pairs, where each pair represents an undirected edge in the network.
+Each element in the list should be a vector of exactly two positive integers, with each integer indicating a node index.}
 }
 \value{
-An object of class \code{network}, a list with the following components:
-\item{graph}{A list of unique, sorted integer pairs representing edges.}
-\item{nodes}{A sorted vector of unique node indices in the graph.}
-\item{n_nodes}{The total number of unique nodes in the graph.}
-\item{n_edges}{The total number of unique edges in the graph.}
-\item{mean_degree}{The mean degree of nodes in the network, calculated as
-\code{2 * n_edges / n_nodes}.}
+A \code{network} class object, which is a list containing the following components:
+\item{graph}{A list of unique, sorted integer pairs representing the undirected edges in the network.}
+\item{nodes}{A sorted vector of unique node indices present in the network.}
+\item{n_nodes}{The total number of unique nodes in the network.}
+\item{n_edges}{The total number of unique edges in the network.}
+\item{mean_degree}{The mean degree of nodes in the network, calculated as \code{2 * n_edges / n_nodes}.}
+\item{attributes}{An empty \code{data.frame} for storing node attributes, with row names as node indices.}
 }
 \description{
-This function takes a graph represented as a list of undirected edges and
-converts it into a \code{network} object with properties such as nodes, edges,
-and mean degree. The graph should be a list where each element is an integer
-vector of length 2 representing an edge between two nodes.
+Converts a graph represented as a list of undirected edges into a \code{network} object with structured
+information on nodes, edges, mean degree, and optional node attributes. This function expects each edge to be
+an integer vector of length 2, indicating an undirected connection between two nodes.
 }
 \examples{
-# Example of creating a graph and converting it to a network object
-graph <- list(c(1, 2), c(2, 3), c(3, 1), c(1, 2)) # Duplicate edges included
+# Define a graph with nodes and edges
+graph <- list(c(1, 2), c(2, 3), c(3, 1), c(1, 2)) # Includes duplicate edges
 network <- graph_to_network(graph)
-print(network)
+network
 
 }

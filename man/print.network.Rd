@@ -2,7 +2,7 @@
 % Please edit documentation in R/graph_to_network.R
 \name{print.network}
 \alias{print.network}
-\title{Print Summary for Network Object}
+\title{Print method for Network Object}
 \usage{
 \method{print}{network}(x, digits = max(3L, getOption("digits") - 3L), ...)
 }
